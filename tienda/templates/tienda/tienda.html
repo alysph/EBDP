@@ -1,0 +1,42 @@
+{% extends "EBDPApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+    <div style="float:right;">
+        {% if request.user.is_authenticated %}
+            {% include "carro/widget.html" %}
+        {% else %}
+            <div class="alert alert-danger text-center">Inicia sesión</div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+
+{% for producto in productos %}
+<br><br>
+<br><br>
+<div class="card mb-3" style="max-width: 800px;">
+    <div class="row no-gutters" >
+      <div class="col-md-4">
+        <img src="{{producto.imagen.url}}" class="card-img-top">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+            <p class="card-text">{{producto.nombre}}</p>
+            <p class="card-text">{{producto.descripcion}}</p>
+            <p class="card-text">&nbsp;${{producto.precio}}</p>
+            <a href="{% url 'agregar' producto.id %}" class="btn btn-success">Agregar al carro</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "EBDPApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="contenedorFormulario">
+    <h1 style="text-align: center; padding: 5px; color: white;">Contáctate con nosotros</h1>
+
+    {% if "valido" in request.GET %}
+    <p style="color: white; text-align: center;">Información envíada correctamente</p>
+    {% endif %}
+    
+    <form action="" method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <table style="color: white; margin: 20px auto;">{{miFormulario.as_table}}</table>
+        <input type="submit" value="Enviar" style="width: 150px";>
+
+    </form>
+
+</div>
+
+{% endblock %}
